@@ -211,3 +211,7 @@ Bottom line: Of all the modeling approaches taken in this study, the best cross 
 
 -Compare efficiency metrics' predictivity versus more conventional NBA statistics, e.g., points scored, field goal percentage, minutes played
 
+### Contact info:
+email: jangelchik@gmail.com
+LinkedIn: https://www.linkedin.com/in/joshangelchik/
+github: https://github.com/jangelchik/
