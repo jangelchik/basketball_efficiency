@@ -1,7 +1,7 @@
-# We want to investigate the predictivity of regular season wins based on a team roster's individual efficiency metrics from the prior year.
+# We want to investigate the predictivity of NBA regular season wins based on a team roster's individual efficiency metrics from the prior year.
 ## More simply, does an individual's efficiency metric score really indicate his abilty to contribute to his team?
 
-There are a handful of efficiency metrics that are worth invesitgating here:
+There are a handful of basketball efficiency metrics that are worth invesitgating here:
 
 Martin Manley's Efficiency ('EFF') = ((Points + Rebounds + Assists + Steals + Blocks) - (Missed Field Goals + Missed Free Throws + Turnovers))/ Games Played
 
