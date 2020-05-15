@@ -16,7 +16,7 @@ Additionally, because players may change teams from year to year, the PER score 
 Lastly, looking at these raw statistics may help inform to what extent a coach should seek to opitimize all individual player efficiencies, and which particular metric is most predictive of team success.
 
 # Data
-We pulled the most recent 20 seasons of NBA player data utilizing swar's nba_api - https://github.com/swar/nba_api. 
+I pulled the most recent 20 seasons of NBA player data utilizing swar's nba_api - https://github.com/swar/nba_api. 
 
 This API pulls data from stats.nba.com. MongDB was utilized for data storage.
 
@@ -27,6 +27,9 @@ A full procedural breakdown of the statistical methods and functions used in thi
 # Workflow
 
 ![png](images/workflow.png)
+
+## Procedure:
+Generate team rosters pertinent to the beginning of each season, and pull each indiviual players average efficiency metric from the prior season. Rank the metrics hierarchically - to compare players of equal hierarchy across teams - and use as features in fitting against the regular season results for a particular team.
 
 
 ## Distributions of our EFF, PIR, and +/- metrics.
