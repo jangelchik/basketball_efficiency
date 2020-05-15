@@ -221,6 +221,4 @@ This makes sense given the plethora of confounding variables that determine a te
 -Test 'Big 3' theory. Is there a sweet spot of the number of elite players per team that optimizes a season's outcomes?
 
 ### Contact info:
-email: jangelchik@gmail.com
 LinkedIn: https://www.linkedin.com/in/joshangelchik/
-github: https://github.com/jangelchik/
