@@ -206,7 +206,10 @@ This suggests that +/- may be the most comprehensive measurement of a player's e
 
 Possible implication: while further study is needed, focusing on optimizing the +/- metric across players during a season could help inform coaching styles and may lead to improved success for a team.
 
-Bottom line: Of all the modeling approaches taken in this study, the best cross validated R^2 score we generated was 0.394. This suggests the prior season's efficiency metrics of an NBA roster on their own do a mediocre job of capturing the variance in the number of regular season wins. 
+#### Bottom line: 
+Of all the modeling approaches taken in this study, the best cross validated R^2 score we generated was 0.394 (team averages for EFF, PIR, +/-). While a positive linear relationship exists between all three efficiency metrics from the prior year and regular season wins, on their own, these efficiency metrics do an mediocre job of predicting regular season wins. 
+
+This makes sense given the plethora of confounding variables that determine a team's regular season success (e.g., trades, injuries, load management, intra-team conflict, etc...)
 
 # Further Study:
 -Employ different model types and see if the relationship between efficiency metrics is upheld.
