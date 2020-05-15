@@ -1,5 +1,5 @@
 # We want to investigate the predictivity of regular season wins based on a team roster's individual efficiency metrics from the prior year.
-## More simply, do efficiency metrics truly capture a player's contribution to his team's success?
+## More simply, does an individual's efficiency metric score really indicate his abilty to contribute to his team?
 
 There are a handful of efficiency metrics that are worth invesitgating here:
 
@@ -129,7 +129,7 @@ score_team(['eff','pir','+/-'])
 
 
 ### So we've improved about .024 from our individual +/- model before to R^2 =~0.394.
-While this improvement is slight, it suggest that a team's average efficiency if more informative to regular season success than the roster's individual efficiency values.
+While this improvement is slight, it suggest that considering a team's average efficiency across all three metrics may be more informative to regular season success than the roster's individual efficiency values.
 
 ### Time for another round of feature importance analysis.
 
