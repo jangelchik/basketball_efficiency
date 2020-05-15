@@ -1,122 +1,3 @@
-```python
-import pymongo
-import pandas as pd
-from pymongo import MongoClient
-
-
-import numpy as np
-import pandas as pd
-import scipy.stats as stats
-
-import matplotlib.pyplot as plt
-%matplotlib inline
-
-plt.style.use('ggplot')
-```
-
-## For analysis, we'll begin by importing all of our data from MongoDb
-
-
-```python
-client = MongoClient()
-db_nba= client.nba
-
-
-collection_p = db_nba.player_stats
-df_nba = pd.DataFrame(list(collection_p.find()))
-
-collection_t = db_nba.team_stats
-df_team = pd.DataFrame(list(collection_t.find()))
-
-collection_r = db_nba.team_rosters
-df_r = pd.DataFrame(list(collection_r.find()))
-```
-
-Let's take a high-level look at our player stats dataframe.
-
-
-```python
-df_nba.info()
-```
-
-    <class 'pandas.core.frame.DataFrame'>
-    RangeIndex: 13168 entries, 0 to 13167
-    Data columns (total 29 columns):
-     #   Column             Non-Null Count  Dtype  
-    ---  ------             --------------  -----  
-     0   _id                13168 non-null  object 
-     1   Player_ID          13168 non-null  int64  
-     2   GROUP_VALUE        13168 non-null  object 
-     3   TEAM_ID            13168 non-null  int64  
-     4   TEAM_ABBREVIATION  13168 non-null  object 
-     5   GP                 13168 non-null  int64  
-     6   W                  13168 non-null  int64  
-     7   L                  13168 non-null  int64  
-     8   FGM                13168 non-null  int64  
-     9   FGA                13168 non-null  int64  
-     10  FG_PCT             13168 non-null  float64
-     11  FG3M               13168 non-null  int64  
-     12  FG3A               13168 non-null  int64  
-     13  FG3_PCT            13168 non-null  float64
-     14  FTM                13168 non-null  int64  
-     15  FTA                13168 non-null  int64  
-     16  FT_PCT             13168 non-null  float64
-     17  OREB               13168 non-null  int64  
-     18  DREB               13168 non-null  int64  
-     19  REB                13168 non-null  int64  
-     20  AST                13168 non-null  int64  
-     21  TOV                13168 non-null  int64  
-     22  STL                13168 non-null  int64  
-     23  BLK                13168 non-null  int64  
-     24  BLKA               13168 non-null  int64  
-     25  PF                 13168 non-null  int64  
-     26  PFD                13168 non-null  int64  
-     27  PTS                13168 non-null  int64  
-     28  PLUS_MINUS         13168 non-null  int64  
-    dtypes: float64(3), int64(23), object(3)
-    memory usage: 2.9+ MB
-
-
-## Looks like we can clean this up a bit. 
-
-#### First, we don't need the '_id' column, as this is a Mongo convention to identify individual entries.
-#### Second, we can rename the 'GROUP_VALUE' column to 'season', based on our knowledge of that column in builder the scrapers.
-#### Lastly, let's convert all column names to lowercase for ease of indexing.
-
-
-```python
-df_nba.drop(columns=['_id'], inplace = True)
-df_nba.rename(columns={'GROUP_VALUE':'season'}, inplace = True)
-```
-
-
-```python
-d_lower = dict()
-for i in df_nba.columns:
-    d_lower[i] = i.lower()
-
-df_nba.rename(columns=d_lower, inplace = True)
-df_nba.columns
-```
-
-
-
-
-    Index(['player_id', 'season', 'team_id', 'team_abbreviation', 'gp', 'w', 'l',
-           'fgm', 'fga', 'fg_pct', 'fg3m', 'fg3a', 'fg3_pct', 'ftm', 'fta',
-           'ft_pct', 'oreb', 'dreb', 'reb', 'ast', 'tov', 'stl', 'blk', 'blka',
-           'pf', 'pfd', 'pts', 'plus_minus'],
-          dtype='object')
-
-
-
-#### The last bit of preliminary cleaning will be to get rid of all entries for the 2019-20 season, as the season was stalled, so we won't have any target values. We can do this via indexing.
-
-
-```python
-df_nba.drop(df_nba[df_nba['season'] == '2019-20'].index , inplace=True)
-```
-
 # We want to investigate the predictivity of regular season wins based on a team roster's individual efficiency metrics from the prior year.
 ### More simply, do efficiency metrics truly capture a player's contribution to his team's success.
 
@@ -241,7 +122,7 @@ plot_stat_dist('eff')
 ```
 
 
-![png](output_17_0.png)
+![png](data_and_plots/output_17_0.png)
 
 
 
@@ -251,7 +132,7 @@ plot_stat_dist('pir')
 ```
 
 
-![png](output_18_0.png)
+![png](data_and_plots/output_18_0.png)
 
 
 
@@ -261,7 +142,7 @@ plot_stat_dist('+/-')
 ```
 
 
-![png](output_19_0.png)
+![png](data_and_plots/output_19_0.png)
 
 
 ## Now let's group the player data by player_id and season, so that we can pull the statistic values from a prior year, and use those as features for a team based on roster. 
@@ -971,7 +852,7 @@ plot_win_dist()
 ```
 
 
-![png](output_53_0.png)
+![png](data_and_plots/output_53_0.png)
 
 
 
@@ -1385,7 +1266,7 @@ eff_ind = score_n_features('eff')
 ```
 
 
-![png](output_72_0.png)
+![png](data_and_plots/output_72_0.png)
 
 
 
@@ -1402,7 +1283,7 @@ pir_ind = score_n_features('pir')
 ```
 
 
-![png](output_75_0.png)
+![png](data_and_plots/output_75_0.png)
 
 
 
@@ -1419,7 +1300,7 @@ pm_ind = score_n_features('+/-')
 ```
 
 
-![png](output_78_0.png)
+![png](data_and_plots/output_78_0.png)
 
 
 
@@ -1528,7 +1409,7 @@ pm_imp = plot_imp('+/-',17)
 ```
 
 
-![png](output_85_0.png)
+![png](data_and_plots/output_85_0.png)
 
 
 Feature importance was not parallel to the hierarchical rankings of player +/- within each team. This suggests that bench players (ranks 6 and below) play an important role in predicting a team's success for a given season. 
@@ -1543,7 +1424,7 @@ eff_imp = plot_imp('eff',14)
 ```
 
 
-![png](output_87_0.png)
+![png](data_and_plots/output_87_0.png)
 
 
 
@@ -1553,7 +1434,7 @@ pir_imp = plot_imp('pir',13)
 ```
 
 
-![png](output_88_0.png)
+![png](data_and_plots/output_88_0.png)
 
 
 ### Looks like for the most part, linear relationships exist between EFF/PIR and wins. 
@@ -1989,7 +1870,7 @@ team_agg_imp = plot_imp_team(['eff','pir','+/-'])
 ```
 
 
-![png](output_102_0.png)
+![png](data_and_plots/output_102_0.png)
 
 
 ## Feature Importance by Average Team Stats Summary
