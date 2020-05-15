@@ -1,5 +1,5 @@
 # We want to investigate the predictivity of regular season wins based on a team roster's individual efficiency metrics from the prior year.
-### More simply, do efficiency metrics truly capture a player's contribution to his team's success.
+## More simply, do efficiency metrics truly capture a player's contribution to his team's success?
 
 There are a handful of efficiency metrics that are worth invesitgating here:
 
@@ -9,9 +9,11 @@ European Performance Index Rating ('PIR') = ((Points + Rebounds + Assists + Stea
 
 Plus-Minus Avg('+/-') = Seasonal plus-minus / Games Played : This describes the point differential for each game with a player on the floor without keeping track of more specific individual metrics. I.e., how does the score spread change when a player is in the game?
 
-Note: We will not be considering John Hollinger's Player Efficiency Rating ('PER'): It is the most frequently used alternative, however PER is derived by a very complex calculation designed to compensate for different teams' varying style of play, among other factors, and PER scores do not differ markedly from EFF scores. Additionally, because players may change teams from year to year, the PER score from the prior year may misrepresent the player's efficiency within the context of the new team's possibly different style of play. 
+Note: We will not be considering John Hollinger's Player Efficiency Rating ('PER'): It is the most frequently used alternative, however PER is derived by a very complex calculation designed to compensate for different teams' varying style of play, among other factors, and PER scores do not differ markedly from EFF scores. 
 
-This study is more so interested in an individual player's efficiency being predictive of team success, regardless of coaching and playing styles. Furthermore, looking at these raw statistics will help inform to what extent a coach should seek to opitimize all individual player efficiencies, and which particular metric is most predictive of team success.
+Additionally, because players may change teams from year to year, the PER score from the prior year may misrepresent the player's efficiency within the context of the new team's possibly different style of play. 
+
+Lastly, looking at these raw statistics may help inform to what extent a coach should seek to opitimize all individual player efficiencies, and which particular metric is most predictive of team success.
 
 # Data
 We pulled the most recent 20 seasons of NBA player data utilizing swar's nba_api - https://github.com/swar/nba_api. 
@@ -21,6 +23,10 @@ This API pulls data from stats.nba.com. MongDB was utilized for data storage.
 The various api scraping scripts can be found in the following files in this repository: nba_player_scraper.ipynb, nba_roster_scraper.ipynb, nba_team_scraper.ipynb
 
 A full procedural breakdown of the statistical methods and functions used in this study can be found in the data_and_plots.ipynb file in this repository.
+
+# Workflow
+
+![png](images/workflow.png)
 
 
 ## Distributions of our EFF, PIR, and +/- metrics.
