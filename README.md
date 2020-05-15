@@ -35,15 +35,15 @@ Generate team rosters pertinent to the beginning of each season, and pull each i
 
 ## Distributions of our EFF, PIR, and +/- metrics.
 
-![png](data_and_plots/output_17_0.png)
+![png](images/output_17_0.png)
 
-![png](data_and_plots/output_18_0.png)
+![png](images/output_18_0.png)
 
-![png](data_and_plots/output_19_0.png)
+![png](images/output_19_0.png)
 
 ## Distribution of Regular Season Wins
 
-![png](data_and_plots/output_53_0.png)
+![png](images/output_53_0.png)
 
 ## Let's begin fitting and experimenting with the number of features to see if there's an optimal number of best player individual efficiency scores to include per team. A range of 5 to 17 feels approriate as 5 players need to be on the floor at a given time, and there can be a maximum of 17 players on the active roster of a team.
 
@@ -51,18 +51,21 @@ Generate team rosters pertinent to the beginning of each season, and pull each i
 
 Because none of our data is categorical, and we can't ensure a linear relationship between our features and targets, a GradientBoost Regressor feels appropriate for regular season wins predictions.
 
+Here is an example of an X and y set for fitting our models - Top 10 EFF scores from prior year on a roster vs regular season wins:
+![png](images/X_y_example.png)
+
 ## EFF results
 
-![png](data_and_plots/output_72_0.png)
+![png](images/output_72_0.png)
 
 
 ## PIR results
 
-![png](data_and_plots/output_75_0.png)
+![png](images/output_75_0.png)
 
 ## +/- results
 
-![png](data_and_plots/output_78_0.png)
+![png](images/output_78_0.png)
 
 ## Individual Player Features Model Summary
 
@@ -81,14 +84,14 @@ When creating hierarchical rankings within teams, individual Player +/- is the m
 3) Absence of outliers: let's run through once and then alter if we need to. 
 4) Linearity: visually test with scatter plot and Pearson R p-value. We'll use an alpha of 0.05 as our threshold of statistical significance. 
 
-![png](data_and_plots/output_85_0.png)
+![png](images/output_85_0.png)
 
 ### Feature importance was not parallel to the hierarchical rankings of player +/- within each team. 
 This suggests that bench players (ranks 6 and below) play an important role in predicting a team's success for a given season. Across all features, individual player +/- scores were positively correlated to regular season wins to a statistically significant degree. Does this hold true for both EFF and PIR?
 
-![png](data_and_plots/output_87_0.png)
+![png](images/output_87_0.png)
 
-![png](data_and_plots/output_88_0.png)
+![png](images/output_88_0.png)
 
 
 ### Looks like for the most part, linear relationships exist between EFF/PIR and wins. 
@@ -137,7 +140,7 @@ While this improvement is slight, it suggest that considering a team's average e
 
 ### Time for another round of feature importance analysis.
 
-![png](data_and_plots/output_102_0.png)
+![png](images/output_102_0.png)
 
 
 ## Feature Importance by Average Team Stats Summary
