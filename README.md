@@ -128,6 +128,9 @@ Across the board, individual player +/-  is more strongly correlated with regula
 
 ## However, the top R^2 of 0.37 from our Gradient Boosting models (+/-, 15 players) still leaves plenty to be desired. Let's pivot to some aggregated team statistics and see if those are more informative. 
 
+Here's what the features and targets look like for team average efficiency metrics:
+![png](images/agg_X_y_example.png)
+
 ```python
 score_team(['eff','pir','+/-'])
 ```
