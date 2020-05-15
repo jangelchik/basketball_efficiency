@@ -215,6 +215,8 @@ Bottom line: Of all the modeling approaches taken in this study, the best cross 
 
 -Compare efficiency metrics' predictivity versus more conventional NBA statistics, e.g., points scored, field goal percentage, minutes played
 
+-Test 'Big 3' theory. Is there a sweet spot of the number of elite players per team that optimizes a season's outcomes?
+
 ### Contact info:
 email: jangelchik@gmail.com
 LinkedIn: https://www.linkedin.com/in/joshangelchik/
