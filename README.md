@@ -16,7 +16,8 @@ Additionally, because players may change teams from year to year, the PER score 
 Lastly, looking at these raw statistics may help inform to what extent a coach should seek to opitimize all individual player efficiencies, and which particular metric is most predictive of team success.
 
 # Data
-I pulled the most recent 20 seasons of NBA player data utilizing swar's nba_api - https://github.com/swar/nba_api. 
+I pulled the most recent 20 seasons of NBA player data utilizing swar's nba_api - https://github.com/swar/nba_api.
+This data stack was comprised of just over 13,000 player/season pairs and the player's corresponding statistics for that season.
 
 This API pulls data from stats.nba.com. MongDB was utilized for data storage.
 
