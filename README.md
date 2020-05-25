@@ -1,5 +1,11 @@
-# We want to investigate the predictivity of NBA regular season wins based on a team roster's individual efficiency metrics from the prior year.
-## More simply, does an individual's efficiency metric score really indicate his abilty to contribute to his team?
+# Background
+Statistical analysis has a seemingly ever-increasing presence in modern sports dialogue, and the National Basketball Association is no exception to this trend. 
+
+As a self-proclaimed NBA fan, I often find myself frustrated by the lack of contextualization on talk shows for the statistics being cited. There's a passive implication that the viewer should not only care about these metrics, but understand what they mean for a team or player. I find efficiency metrics to be particularly frustrating. It's certainly worthwhile to note an individual's performance, but do efficiency metrics truly capture an individual's contribution to his team's success?
+
+
+# In an attempt to tackle this question, let's investigate the predictivity of NBA regular season wins based on a team roster's individual efficiency metrics from the prior year.
+## In other words, to what extent is an individual's efficiency metric score indicative of his team's future success, and are all efficiency metrics equally predictive?
 
 There are a handful of basketball efficiency metrics that are worth invesitgating here:
 
@@ -9,11 +15,11 @@ European Performance Index Rating ('PIR') = ((Points + Rebounds + Assists + Stea
 
 Plus-Minus Avg('+/-') = Seasonal plus-minus / Games Played : This describes the point differential for each game with a player on the floor without keeping track of more specific individual metrics. I.e., how does the score spread change when a player is in the game?
 
-Note: We will not be considering John Hollinger's Player Efficiency Rating ('PER'): It is the most frequently used alternative, however PER is derived by a very complex calculation designed to compensate for different teams' varying style of play, among other factors, and PER scores do not differ markedly from EFF scores. 
+Note: We will not be considering John Hollinger's Player Efficiency Rating ('PER'): It is the most frequently used alternative, however PER is derived by a complex calculation designed to compensate for different teams' varying style of play, among other factors, and PER scores do not differ markedly from EFF scores. 
 
 Additionally, because players may change teams from year to year, the PER score from the prior year may misrepresent the player's efficiency within the context of the new team's possibly different style of play. 
 
-Lastly, looking at these raw statistics may help inform to what extent a coach should seek to opitimize all individual player efficiencies, and which particular metric is most predictive of team success.
+Lastly, looking at these raw statistics may help inform to what extent coaches and team managements should prioritize the various efficiency metrics when desiging line-ups and making roster changes.
 
 # Data
 I pulled the most recent 20 seasons of NBA player data utilizing swar's nba_api - https://github.com/swar/nba_api.
@@ -30,7 +36,7 @@ A full procedural breakdown of the statistical methods and functions used in thi
 ![png](images/workflow.png)
 
 ## Procedure:
-Generate team rosters pertinent to the beginning of each season, and pull each indiviual players average efficiency metric from the prior season. Rank the metrics hierarchically - to compare players of equal hierarchy across teams - and use as features in fitting against the regular season results for a particular team.
+Generate team rosters pertinent to the beginning of each season, and pull each indiviual players average efficiency metric from the prior season. Rank the metrics hierarchically - to compare players of equal hierarchy across teams - and use as features in a gradient-boosted regression fitting against the regular season wins for a particular team.
 
 
 ## Distributions of our EFF, PIR, and +/- metrics.
@@ -87,7 +93,7 @@ When creating hierarchical rankings within teams, individual Player +/- is the m
 ![png](images/output_85_0.png)
 
 ### Feature importance was not parallel to the hierarchical rankings of player +/- within each team. 
-This suggests that bench players (ranks 6 and below) play an important role in predicting a team's success for a given season. Across all features, individual player +/- scores were positively correlated to regular season wins to a statistically significant degree. Does this hold true for both EFF and PIR?
+This suggests that bench players (ranks 6 and below) play an important role in predicting a team's success for a given season, at least, within a gradient boosted regression context. Across all features, individual player +/- scores were positively correlated to regular season wins to a statistically significant degree. Does this hold true for both EFF and PIR?
 
 ![png](images/output_87_0.png)
 
@@ -139,7 +145,7 @@ score_team(['eff','pir','+/-'])
 
 
 ### So we've improved about .024 from our individual +/- model before to R^2 =~0.394.
-While this improvement is slight, it suggest that considering a team's average efficiency across all three metrics may be more informative to regular season success than the roster's individual efficiency values.
+While this improvement is slight, it suggests that considering a team's average efficiency across all three metrics may be more informative to regular season success than the roster's individual efficiency values.
 
 ### Time for another round of feature importance analysis.
 
@@ -204,16 +210,17 @@ The results above are the worst of any model for which we've used prior season +
 
 # Conclusion
 
-Within the context of Gradient Boosting regression modeling, the NBA efficiency metric of a player's prior season +/- is the most predictive of regular season success based on a team's roster at the beginning of a season and, both on an individual player and team average basis in comparison to prior season EFF and prior season PIR.
+Within the context of Gradient Boosting regression modeling, the NBA efficiency metric of a player's prior season +/- is the most predictive of regular season success based on a team's roster at the beginning of a season, both on an individual player and team average basis in comparison to prior season EFF and prior season PIR.
 
 Across all levels in player hierarchy for a given team, +/- is more strongly correlated to regular season wins than EFF and PIR. 
 
-This suggests that +/- may be the most comprehensive measurement of a player's efficiency in contributing to a team winning games. While +/- takes into account scoring differentials during a player's time on the court, EFF and PIR only take into account the changes in the individual player's statline. 
+This suggests that +/- may be the most comprehensive measurement of a player's efficiency in contributing to a team winning games. While +/- takes into account scoring differentials during a player's time on the court, EFF and PIR only take into account the changes in the individual player's statline.
 
-Possible implication: while further study is needed, focusing on optimizing the +/- metric across players during a season could help inform coaching styles and may lead to improved success for a team.
+#### Possible Implication
+Coaches and management should prioritize a player's +/- scores over EFF and PIR when making adjustments to either in-game lineups or the team roster.
 
 #### Bottom line: 
-Of all the modeling approaches taken in this study, the best cross validated R^2 score we generated was 0.394 (team averages for EFF, PIR, +/-). While a positive linear relationship exists between all three efficiency metrics from the prior year and regular season wins, on their own, these efficiency metrics do an mediocre job of predicting regular season wins. 
+Of all the modeling approaches taken in this study, the best cross validated R^2 score we generated was 0.394 (team averages for EFF, PIR, +/-). While a positive linear relationship exists between all three efficiency metrics from the prior year and regular season wins, on their own, these efficiency metrics do a mediocre job of predicting regular season wins. 
 
 This makes sense given the plethora of confounding variables that determine a team's regular season success (e.g., trades, injuries, load management, intra-team conflict, etc...)
 
@@ -222,9 +229,9 @@ This makes sense given the plethora of confounding variables that determine a te
 
 -Investigate the predicitivity of a player's propensity for injury or being traded, and how that in interaction with efficiency metrics may effect regular season wins. 
 
--Compare efficiency metrics' predictivity versus more conventional NBA statistics, e.g., points scored, field goal percentage, minutes played
+-Compare efficiency metrics' predictivity versus more conventional NBA statistics, e.g., points scored, field goal percentage, minutes played.
 
--Test 'Big 3' theory. Is there a sweet spot of the number of elite players per team that optimizes a season's outcomes?
+-Test 'Big 3' theory. Is there a sweet spot of the number of elite players per team that optimizes a season's outcomes? Is there an inflection point at which having too many high ranking EFF and PIR players on a roster has an adverse effect on player +/- values, and therefore a team's success?
 
 ### Contact info:
 LinkedIn: https://www.linkedin.com/in/joshangelchik/
