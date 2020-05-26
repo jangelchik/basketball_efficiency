@@ -1,7 +1,7 @@
 # Background
-Statistical analysis has a seemingly ever-increasing presence in modern sports dialogue, and the National Basketball Association is no exception to this trend. 
+Statistical analysis and jargon are unavoidable in modern sports dialogue, and the National Basketball Association is no exception to this trend. 
 
-As a self-proclaimed NBA fan, I often find myself frustrated by the lack of contextualization on talk shows for the statistics being cited. There's a passive implication that the viewer should not only care about these metrics, but understand what they mean for a team or player. I find efficiency metrics to be particularly frustrating. It's certainly worthwhile to note an individual's performance, but do efficiency metrics truly capture an individual's contribution to his team's success?
+As a self-proclaimed NBA fan, I often find myself frustrated by the lack of contextualization when statistics are cited on talk shows. There's a passive implication that the viewer should not only care about these metrics, but understand what they mean for a team or player. I find efficiency metrics to be particularly frustrating. It's certainly worthwhile to note an individual's performance, but do efficiency metrics truly capture an individual's contribution to his team's success? Or are these three letter abbreviations and their corresponding numerical values void of insight?
 
 
 # In an attempt to tackle this question, let's investigate the predictivity of NBA regular season wins based on a team roster's individual efficiency metrics from the prior year.
